@@ -11,4 +11,7 @@
 	.text-sm {
 		@apply tracking-[0.17px];
 	}
+	.text-base {
+		@apply tracking-[0.19px];
+	}
 }
