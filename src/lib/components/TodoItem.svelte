@@ -40,9 +40,9 @@
 		<img src={iconCheck} alt="" class="absolute left-[25px]" />
 		<label
 			for={`todo-${todo.id}`}
-			class="relative pl-8 pr-6 text-sm cursor-pointer text-very-dark-grayish-blue 
-                peer-checked/done:line-through peer-checked/done:text-light-grayish-blue"
-			>{todo.name}</label
+			class="relative pl-8 pr-6 py-[17px] text-sm cursor-pointer text-very-dark-grayish-blue 
+                peer-checked/done:line-through peer-checked/done:text-light-grayish-blue
+                peer-focus-visible/done:ring-2">{todo.name}</label
 		>
 	</div>
 	<button aria-label="Delete {todo.name}" on:click={() => deleteTodo(todo)} class="p-5">

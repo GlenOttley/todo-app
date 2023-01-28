@@ -5,11 +5,13 @@
 	import SortableList from 'svelte-sortable-list';
 	import TodoItem from '$root/src/lib/components/TodoItem.svelte';
 	import { onDestroy } from 'svelte/internal';
+	import type { Filter } from '$lib/types';
 
 	let todosLabel: HTMLElement;
 	let liveRegion: HTMLElement;
 	let todoText = '';
 	let todosActiveCount = getActiveCount();
+	let filterOptions = ['all', 'active', 'completed'];
 
 	const unsubscribe = todos.subscribe(() => {
 		todosActiveCount = getActiveCount();
@@ -50,6 +52,10 @@
 	function markComplete() {
 		todosActiveCount = getActiveCount();
 	}
+
+	function setFilter(value: string) {
+		filter.set(value as Filter);
+	}
 </script>
 
 <Header />
@@ -77,21 +83,42 @@
 			<SortableList list={$filteredTodos} key="id" on:sort={sortList} let:item>
 				<TodoItem todo={item} {todosLabel} {liveRegion} on:complete={markComplete} />
 			</SortableList>
-			<li class="flex justify-between py-4 px-5">
-				<span role="status" class="text-sm text-dark-grayish-blue"
+			<div class="flex justify-between px-5">
+				<span role="status" class="text-sm text-dark-grayish-blue py-4"
 					>{todosActiveCount} items left</span
 				>
-				<button class="text-sm text-dark-grayish-blue" on:click={clearCompleted}
+				<button class="text-sm text-dark-grayish-blue py-4" on:click={clearCompleted}
 					>Clear Completed</button
 				>
-			</li>
+			</div>
 			<div class="empty-state">
 				<p>Add your first to-do</p>
 			</div>
 		</section>
 	</main>
 
-	<div aria-label="Filter by status" class="rounded bg-white shadow flex justify-center px-[10px]">
+	<fieldset class="rounded bg-white shadow flex justify-center px-[10px]">
+		<legend class="sr-only">Filter by status</legend>
+		{#each filterOptions as value}
+			<label
+				for={value}
+				class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2
+    {$filter === value ? 'text-bright-blue' : 'text-dark-grayish-blue'}"
+			>
+				<input
+					type="radio"
+					name="status"
+					id={value}
+					{value}
+					on:change={() => setFilter(value)}
+					class="appearance-none focus-within:outline-none"
+				/>
+				{value}
+			</label>
+		{/each}
+	</fieldset>
+
+	<!-- <div aria-label="Filter by status" class="rounded bg-white shadow flex justify-center px-[10px]">
 		<button
 			aria-label="Show all"
 			on:click={() => ($filter = 'all')}
@@ -110,7 +137,7 @@
 			class="px-[10px] py-4 text-base font-bold 
         {$filter === 'completed' ? 'text-bright-blue' : 'text-dark-grayish-blue'}">Completed</button
 		>
-	</div>
+	</div> -->
 </div>
 
 <style>
