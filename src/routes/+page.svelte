@@ -58,86 +58,74 @@
 	}
 </script>
 
-<Header />
-<div class="container relative bottom-[92px]">
-	<main aria-labelledby="todos-label" class="mb-4">
-		<form on:submit|preventDefault={addTodo} class="mb-4 flex items-center">
-			<span
-				class="absolute h-5 w-5 ml-5 bg-white rounded-full border border-very-light-grayish-blue"
-			/>
-			<input
-				type="text"
-				aria-invalid={todoText.length < 10}
-				aria-label="Create a new to-do..."
-				placeholder="Create a new to-do..."
-				bind:value={todoText}
-				class="placeholder:text-sm placeholder:text-dark-grayish-blue py-3 pl-[52px] pr-5 rounded w-full"
-			/>
-			<input type="submit" hidden disabled={todoText.length < 10} />
-		</form>
-		<section class="rounded bg-white shadow">
-			<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="sr-only">My To-do List</h1>
-			<div bind:this={liveRegion} role="status" aria-live="polite" class="sr-only">
-				<!-- add content to hear it spoken -->
-			</div>
-			<SortableList list={$filteredTodos} key="id" on:sort={sortList} let:item>
-				<TodoItem todo={item} {todosLabel} {liveRegion} on:complete={markComplete} />
-			</SortableList>
-			<div class="flex justify-between px-5">
-				<span role="status" class="text-sm text-dark-grayish-blue py-4"
-					>{todosActiveCount} items left</span
-				>
-				<button class="text-sm text-dark-grayish-blue py-4" on:click={clearCompleted}
-					>Clear Completed</button
-				>
-			</div>
-			<div class="empty-state">
-				<p>Add your first to-do</p>
-			</div>
-		</section>
-	</main>
-
-	<fieldset class="rounded bg-white shadow flex justify-center px-[10px]">
-		<legend class="sr-only">Filter by status</legend>
-		{#each filterOptions as value}
-			<label
-				for={value}
-				class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2
-    {$filter === value ? 'text-bright-blue' : 'text-dark-grayish-blue'}"
-			>
-				<input
-					type="radio"
-					name="status"
-					id={value}
-					{value}
-					on:change={() => setFilter(value)}
-					class="appearance-none focus-within:outline-none"
+<div class="bg-very-light-gray-bg dark:bg-very-dark-gray">
+	<div class="container relative bottom-[92px]">
+		<main aria-labelledby="todos-label" class="mb-4">
+			<form on:submit|preventDefault={addTodo} class="flex items-center mb-4">
+				<span
+					class="absolute w-5 h-5 ml-5 bg-white border rounded-full border-very-light-grayish-blue dark:bg-dark-gray dark:border-gray"
 				/>
-				{value}
-			</label>
-		{/each}
-	</fieldset>
+				<input
+					type="text"
+					aria-invalid={todoText.length < 10}
+					aria-label="Create a new to-do..."
+					placeholder="Create a new to-do..."
+					bind:value={todoText}
+					class="placeholder:text-sm dark:bg-dark-gray dark:placeholder:text-light-gray 
+          placeholder:text-dark-grayish-blue py-3 pl-[52px] pr-5 rounded w-full"
+				/>
+				<input type="submit" hidden disabled={todoText.length < 10} />
+			</form>
+			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray">
+				<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="sr-only">My To-do List</h1>
+				<div bind:this={liveRegion} role="status" aria-live="polite" class="sr-only">
+					<!-- add content to hear it spoken -->
+				</div>
+				<SortableList list={$filteredTodos} key="id" on:sort={sortList} let:item>
+					<TodoItem todo={item} {todosLabel} {liveRegion} on:complete={markComplete} />
+				</SortableList>
+				<div class="flex justify-between px-5">
+					<span role="status" class="py-4 text-sm text-dark-grayish-blue "
+						>{todosActiveCount} items left</span
+					>
+					<button class="py-4 text-sm text-dark-grayish-blue" on:click={clearCompleted}
+						>Clear Completed</button
+					>
+				</div>
+				<div class="empty-state">
+					<p>Add your first to-do</p>
+				</div>
+			</section>
+		</main>
 
-	<!-- <div aria-label="Filter by status" class="rounded bg-white shadow flex justify-center px-[10px]">
-		<button
-			aria-label="Show all"
-			on:click={() => ($filter = 'all')}
-			class="px-[10px] py-4 text-base font-bold 
-        {$filter === 'all' ? 'text-bright-blue' : 'text-dark-grayish-blue'}">All</button
+		<fieldset
+			class="rounded bg-white shadow flex justify-center px-[10px] mb-10 dark:shadow-none dark:bg-dark-gray"
 		>
-		<button
-			aria-label="Show active"
-			on:click={() => ($filter = 'active')}
-			class="px-[10px] py-4 text-base font-bold 
-        {$filter === 'active' ? 'text-bright-blue' : 'text-dark-grayish-blue'}">Active</button
-		>
-		<button
-			aria-label="Show completed"
-			on:click={() => ($filter = 'completed')}
-			class="px-[10px] py-4 text-base font-bold 
-        {$filter === 'completed' ? 'text-bright-blue' : 'text-dark-grayish-blue'}">Completed</button
-		>
-	</div> -->
+			<legend class="sr-only">Filter by status</legend>
+			{#each filterOptions as value}
+				<label
+					for={value}
+					class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2
+    {$filter === value
+						? 'text-bright-blue'
+						: 'text-dark-grayish-blue dark:text-very-dark-grayish-blue'}"
+				>
+					<input
+						type="radio"
+						name="status"
+						id={value}
+						{value}
+						on:change={() => setFilter(value)}
+						class="appearance-none focus-within:outline-none"
+					/>
+					{value}
+				</label>
+			{/each}
+		</fieldset>
+		<p class="text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue">
+			Drag and drop to reorder list
+		</p>
+	</div>
 </div>
 
 <style>
