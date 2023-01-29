@@ -57,9 +57,9 @@
 	}
 </script>
 
-<div class="h-screen bg-very-light-gray-bg dark:bg-very-dark-gray">
+<main class="h-screen bg-very-light-gray-bg dark:bg-very-dark-gray">
 	<div class="container relative bottom-[92px] md:bottom-[135px]">
-		<main aria-labelledby="todos-label" class="mb-4">
+		<div aria-labelledby="todos-label" class="mb-4">
 			<form
 				on:submit|preventDefault={addTodo}
 				class="flex items-center mb-4 shadow dark:shadow-dark"
@@ -145,9 +145,9 @@
 			>
 				Drag and drop to reorder list
 			</p>
-		</main>
+		</div>
 	</div>
-</div>
+</main>
 
 <style>
 	.grid {
