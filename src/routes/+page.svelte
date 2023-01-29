@@ -57,12 +57,12 @@
 	}
 </script>
 
-<main class="bg-very-light-gray-bg dark:bg-very-dark-gray -m-b-[92px] md:-m-b-[135px]">
-	<div class="container relative bottom-[92px] md:bottom-[135px]">
+<main class=" bg-very-light-gray-bg dark:bg-very-dark-gray -m-b-[92px] md:-m-b-[135px]">
+	<div class="container relative bottom-[92px] md:bottom-[140px]">
 		<div aria-labelledby="todos-label">
 			<form
 				on:submit|preventDefault={addTodo}
-				class="flex items-center mb-3 shadow dark:shadow-dark"
+				class="flex items-center mb-5 shadow dark:shadow-dark"
 			>
 				<span
 					class="absolute w-5 h-5 ml-5 bg-white border rounded-full md:ml-6 md:h-6 md:w-6 border-very-light-grayish-blue dark:bg-dark-gray dark:border-gray"
