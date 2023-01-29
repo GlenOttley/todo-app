@@ -78,7 +78,7 @@
 				/>
 				<input type="submit" hidden disabled={todoText.length < 10} />
 			</form>
-			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray md:mb-12">
+			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray">
 				<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="outline-none sr-only">
 					My To-do List
 				</h1>
@@ -88,19 +88,27 @@
 				<SortableList list={$filteredTodos} key="id" on:sort={sortList} let:item>
 					<TodoItem todo={item} {todosLabel} {liveRegion} on:complete={markComplete} />
 				</SortableList>
-				<div class="flex justify-between px-5 md:px-6 md:items-center">
+			</section>
+			<div class="grid md:shadow dark:shadow-none">
+				<div
+					class="flex items-center w-full pl-5 bg-white shadow dark:shadow-none dark:bg-dark-gray status md:pl-6 md:shadow-none"
+				>
 					<span
 						role="status"
 						class="py-4 text-sm md:!text-base text-dark-grayish-blue md:py-3 dark:text-very-dark-grayish-blue "
 						>{todosActiveCount} items left</span
 					>
-					<fieldset class="justify-center px-[10px] dark:bg-dark-gray hidden md:flex">
+				</div>
+				<div
+					class="flex items-center justify-center w-full mx-auto mt-4 bg-white rounded shadow dark:bg-dark-gray filters md:mt-0 md:rounded-none dark:shadow-none md:shadow-none"
+				>
+					<fieldset class="flex justify-center px-[10px] dark:bg-dark-gray ">
 						<legend class="sr-only">Filter by status</legend>
 						{#each filterOptions as value}
 							<label
 								for={value}
-								class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2
-                  {$filter === value
+								class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2 flex items-center
+                    {$filter === value
 									? 'text-bright-blue'
 									: 'text-dark-grayish-blue dark:text-very-dark-grayish-blue'}"
 							>
@@ -116,42 +124,50 @@
 							</label>
 						{/each}
 					</fieldset>
-					<button
-						class="py-4 text-sm text-dark-grayish-blue md:py-3 md:!text-base dark:text-very-dark-grayish-blue"
-						on:click={clearCompleted}>Clear Completed</button
-					>
 				</div>
-			</section>
+
+				<div
+					class="flex justify-end w-full pr-5 bg-white shadow clear md:pr-6 whitespace-nowrap dark:bg-dark-gray dark:shadow-none md:shadow-none"
+				>
+					<button
+						on:click={clearCompleted}
+						class="py-4 text-sm text-dark-grayish-blue md:py-3 md:!text-base dark:text-very-dark-grayish-blue"
+					>
+						Clear Completed
+					</button>
+				</div>
+			</div>
 		</main>
 
-		<!-- TODO import tailwind breakpoints and use md screen width to conditionally render this fieldset -->
-		<fieldset
-			aria-labelledby="filtersLabel"
-			class="rounded bg-white shadow flex justify-center px-[10px] mb-10 dark:shadow-none dark:bg-dark-gray md:hidden"
+		<section
+			class="mt-10 text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue md:mt-12"
 		>
-			<legend id="filtersLabel" class="sr-only">Filter by status</legend>
-			{#each filterOptions as value}
-				<label
-					for={value}
-					class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2
-    {$filter === value
-						? 'text-bright-blue'
-						: 'text-dark-grayish-blue dark:text-very-dark-grayish-blue'}"
-				>
-					<input
-						type="radio"
-						name="status"
-						id={value}
-						{value}
-						on:change={() => setFilter(value)}
-						class="appearance-none focus-within:outline-none"
-					/>
-					{value}
-				</label>
-			{/each}
-		</fieldset>
-		<section class="text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue">
 			Drag and drop to reorder list
 		</section>
 	</div>
 </div>
+
+<style>
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(2, 50%);
+		grid-template-rows: repeat(2, auto);
+		grid-template-areas:
+			'status clear'
+			'filters filters';
+	}
+	@media screen and (min-width: 588px) {
+		.grid {
+			display: flex;
+		}
+	}
+	.status {
+		grid-area: status;
+	}
+	.clear {
+		grid-area: clear;
+	}
+	.filters {
+		grid-area: filters;
+	}
+</style>

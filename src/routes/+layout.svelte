@@ -2,7 +2,7 @@
 	import '../app.css';
 	import Header from '$components/Header.svelte';
 
-	let dark = true;
+	let dark = false;
 </script>
 
 <div class:dark>
