@@ -22,7 +22,7 @@
 	}
 </script>
 
-<li
+<div
 	class="flex items-center justify-between border-b border-very-light-grayish-blue dark:border-gray"
 >
 	<div class="relative flex items-center pl-5 md:pl-6 group">
@@ -49,4 +49,4 @@
 	<button aria-label="Delete {todo.name}" on:click={() => deleteTodo(todo)} class="p-5">
 		<img src={iconCross} alt="" class="h-3 " />
 	</button>
-</li>
+</div>

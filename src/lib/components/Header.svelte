@@ -10,7 +10,7 @@
 	class="bg-cover bg-no-repeat h-[200px] md:h-[300px] bg-[url('/bg-mobile-light.jpg')] sm:bg-[url('/bg-desktop-light.jpg')] 
   dark:bg-[url('/bg-mobile-dark.jpg')] dark:sm:bg-[url('/bg-desktop-dark.jpg')] "
 >
-	<div class="container flex justify-between pt-12 md:pt-[70px]">
+	<div class="container flex justify-between pt-12 md:pt-20">
 		<a href="/">
 			<img src={logo} alt="to-do" class="h-5 md:h-[30px]" />
 		</a>
