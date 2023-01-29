@@ -58,12 +58,12 @@
 	}
 </script>
 
-<div class="bg-very-light-gray-bg dark:bg-very-dark-gray">
-	<div class="container relative bottom-[92px]">
+<div class=" bg-very-light-gray-bg dark:bg-very-dark-gray">
+	<div class="container relative bottom-[92px] md:bottom-[135px]">
 		<main aria-labelledby="todos-label" class="mb-4">
 			<form on:submit|preventDefault={addTodo} class="flex items-center mb-4">
 				<span
-					class="absolute w-5 h-5 ml-5 bg-white border rounded-full border-very-light-grayish-blue dark:bg-dark-gray dark:border-gray"
+					class="absolute w-5 h-5 ml-5 bg-white border rounded-full md:ml-6 md:h-6 md:w-6 border-very-light-grayish-blue dark:bg-dark-gray dark:border-gray"
 				/>
 				<input
 					type="text"
@@ -72,11 +72,11 @@
 					placeholder="Create a new to-do..."
 					bind:value={todoText}
 					class="placeholder:text-sm dark:bg-dark-gray dark:placeholder:text-light-gray 
-          placeholder:text-dark-grayish-blue py-3 pl-[52px] pr-5 rounded w-full"
+          placeholder:text-dark-grayish-blue py-3 pl-[52px] md:pl-[72px] pr-5 rounded w-full md:py-5 "
 				/>
 				<input type="submit" hidden disabled={todoText.length < 10} />
 			</form>
-			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray">
+			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray md:mb-12">
 				<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="sr-only">My To-do List</h1>
 				<div bind:this={liveRegion} role="status" aria-live="polite" class="sr-only">
 					<!-- add content to hear it spoken -->
@@ -84,12 +84,37 @@
 				<SortableList list={$filteredTodos} key="id" on:sort={sortList} let:item>
 					<TodoItem todo={item} {todosLabel} {liveRegion} on:complete={markComplete} />
 				</SortableList>
-				<div class="flex justify-between px-5">
-					<span role="status" class="py-4 text-sm text-dark-grayish-blue "
+				<div class="flex justify-between px-5 md:px-6 md:items-center">
+					<span
+						role="status"
+						class="py-4 text-sm md:!text-base text-dark-grayish-blue md:py-3 dark:text-very-dark-grayish-blue "
 						>{todosActiveCount} items left</span
 					>
-					<button class="py-4 text-sm text-dark-grayish-blue" on:click={clearCompleted}
-						>Clear Completed</button
+					<fieldset class="justify-center px-[10px] dark:bg-dark-gray hidden md:flex">
+						<legend class="sr-only">Filter by status</legend>
+						{#each filterOptions as value}
+							<label
+								for={value}
+								class="capitalize cursor-pointer px-[10px] py-4 text-base font-bold focus-within:ring-2
+                  {$filter === value
+									? 'text-bright-blue'
+									: 'text-dark-grayish-blue dark:text-very-dark-grayish-blue'}"
+							>
+								<input
+									type="radio"
+									name="status"
+									id={value}
+									{value}
+									on:change={() => setFilter(value)}
+									class="appearance-none focus-within:outline-none"
+								/>
+								{value}
+							</label>
+						{/each}
+					</fieldset>
+					<button
+						class="py-4 text-sm text-dark-grayish-blue md:py-3 md:!text-base dark:text-very-dark-grayish-blue"
+						on:click={clearCompleted}>Clear Completed</button
 					>
 				</div>
 				<div class="empty-state">
@@ -99,7 +124,7 @@
 		</main>
 
 		<fieldset
-			class="rounded bg-white shadow flex justify-center px-[10px] mb-10 dark:shadow-none dark:bg-dark-gray"
+			class="rounded bg-white shadow flex justify-center px-[10px] mb-10 dark:shadow-none dark:bg-dark-gray md:hidden"
 		>
 			<legend class="sr-only">Filter by status</legend>
 			{#each filterOptions as value}

@@ -14,6 +14,10 @@ module.exports = {
 				sans: ['Ubuntu', 'sans-serif']
 			}
 		},
+		screens: {
+			sm: '375px',
+			md: '588px'
+		},
 		colors: {
 			transparent: 'transparent',
 			white: '#FFFFFF',

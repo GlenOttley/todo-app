@@ -25,7 +25,7 @@
 <li
 	class="flex items-center justify-between border-b border-very-light-grayish-blue dark:border-gray"
 >
-	<div class="relative flex items-center pl-5 group">
+	<div class="relative flex items-center pl-5 md:pl-6 group">
 		<input
 			type="checkbox"
 			id={`todo-${todo.id}`}
@@ -35,12 +35,12 @@
 		/>
 
 		<span
-			class="absolute w-5 h-5 bg-white border rounded-full border-very-light-grayish-blue group-hover:border-bright-blue peer-checked/done:bg-gradient-to-br peer-checked/done:from-cyan peer-checked/done:to-purple peer-checked/done:border-none dark:bg-dark-gray dark:border-gray"
+			class="absolute w-5 h-5 bg-white border rounded-full md:w-6 md:h-6 border-very-light-grayish-blue group-hover:border-bright-blue peer-checked/done:bg-gradient-to-br peer-checked/done:from-cyan peer-checked/done:to-purple peer-checked/done:border-none dark:bg-dark-gray dark:border-gray"
 		/>
-		<img src={iconCheck} alt="" class="absolute left-[25px]" hidden={!todo.done} />
+		<img src={iconCheck} alt="" class="absolute left-[25px] md:left-[30px]" hidden={!todo.done} />
 		<label
 			for={`todo-${todo.id}`}
-			class="relative pl-8 pr-6 py-[17px] text-sm cursor-pointer text-very-dark-grayish-blue 
+			class="relative pl-8 md:pl-12 pr-6 py-[17px] text-sm cursor-pointer text-very-dark-grayish-blue 
                 peer-checked/done:line-through peer-checked/done:text-light-grayish-blue
                 peer-focus-visible/done:ring-2 dark:peer-checked/done:text-very-dark-grayish-blue
                 dark:text-very-light-gray">{todo.name}</label
