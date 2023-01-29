@@ -137,13 +137,12 @@
 					</button>
 				</div>
 			</div>
+			<p
+				class="mt-10 text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue md:mt-12"
+			>
+				Drag and drop to reorder list
+			</p>
 		</main>
-
-		<section
-			class="mt-10 text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue md:mt-12"
-		>
-			Drag and drop to reorder list
-		</section>
 	</div>
 </div>
 
