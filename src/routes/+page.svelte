@@ -60,7 +60,10 @@
 <div class="h-screen bg-very-light-gray-bg dark:bg-very-dark-gray">
 	<div class="container relative bottom-[92px] md:bottom-[135px]">
 		<main aria-labelledby="todos-label" class="mb-4">
-			<form on:submit|preventDefault={addTodo} class="flex items-center mb-4">
+			<form
+				on:submit|preventDefault={addTodo}
+				class="flex items-center mb-4 shadow dark:shadow-dark"
+			>
 				<span
 					class="absolute w-5 h-5 ml-5 bg-white border rounded-full md:ml-6 md:h-6 md:w-6 border-very-light-grayish-blue dark:bg-dark-gray dark:border-gray"
 				/>
@@ -78,7 +81,7 @@
 				/>
 				<input type="submit" hidden disabled={todoText.length < 10} />
 			</form>
-			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray">
+			<section class="bg-white rounded shadow dark:shadow-dark dark:bg-dark-gray">
 				<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="outline-none sr-only">
 					My To-do List
 				</h1>
@@ -89,9 +92,9 @@
 					<TodoItem todo={item} {todosLabel} {liveRegion} on:complete={markComplete} />
 				</SortableList>
 			</section>
-			<div class="grid md:shadow dark:shadow-none">
+			<div class="grid md:shadow dark:shadow-dark">
 				<div
-					class="flex items-center w-full pl-5 bg-white shadow dark:shadow-none dark:bg-dark-gray status md:pl-6 md:shadow-none"
+					class="flex items-center w-full pl-5 bg-white shadow dark:shadow-dark dark:bg-dark-gray status md:pl-6 md:shadow-none"
 				>
 					<span
 						role="status"
@@ -100,7 +103,7 @@
 					>
 				</div>
 				<div
-					class="flex items-center justify-center w-full mx-auto mt-4 bg-white rounded shadow dark:bg-dark-gray filters md:mt-0 md:rounded-none dark:shadow-none md:shadow-none"
+					class="flex items-center justify-center w-full mx-auto mt-4 bg-white rounded shadow dark:bg-dark-gray filters md:mt-0 md:rounded-none dark:shadow-dark md:shadow-none"
 				>
 					<fieldset class="flex justify-center px-[10px] dark:bg-dark-gray ">
 						<legend class="sr-only">Filter by status</legend>
@@ -127,7 +130,7 @@
 				</div>
 
 				<div
-					class="flex justify-end w-full pr-5 bg-white shadow clear md:pr-6 whitespace-nowrap dark:bg-dark-gray dark:shadow-none md:shadow-none"
+					class="flex justify-end w-full pr-5 bg-white shadow clear md:pr-6 whitespace-nowrap dark:bg-dark-gray dark:shadow-dark md:shadow-none"
 				>
 					<button
 						on:click={clearCompleted}

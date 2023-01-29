@@ -8,10 +8,11 @@ module.exports = {
 				DEFAULT: '5px'
 			},
 			boxShadow: {
-				DEFAULT: '0 35px 50px -15px rgba(194, 195, 214, 0.5)'
+				DEFAULT: '0 35px 50px -15px rgba(194, 195, 214, 0.5)',
+				dark: '0 35px 50px -15px rgba(0, 0, 0, 0.5)'
 			},
 			fontFamily: {
-				sans: ['Ubuntu', 'sans-serif']
+				sans: ['Josefin Sans', 'sans-serif']
 			}
 		},
 		screens: {

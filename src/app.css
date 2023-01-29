@@ -9,7 +9,7 @@
 		@apply transition-colors duration-200;
 	}
 	.text-sm {
-		@apply tracking-[0.17px] md:!text-lg;
+		@apply -tracking-[0.17px] md:!text-lg md:-tracking-[0.25px];
 	}
 	.text-base {
 		@apply tracking-[0.19px];
