@@ -57,7 +57,7 @@
 	}
 </script>
 
-<div class="bg-very-light-gray-bg dark:bg-very-dark-gray">
+<div class="h-screen bg-very-light-gray-bg dark:bg-very-dark-gray">
 	<div class="container relative bottom-[92px] md:bottom-[135px]">
 		<main aria-labelledby="todos-label" class="mb-4">
 			<form on:submit|preventDefault={addTodo} class="flex items-center mb-4">
@@ -73,7 +73,8 @@
 					placeholder="Create a new to-do..."
 					bind:value={todoText}
 					class="placeholder:text-sm dark:bg-dark-gray dark:placeholder:text-light-gray 
-          placeholder:text-dark-grayish-blue py-3 pl-[52px] md:pl-[72px] pr-5 rounded w-full md:py-5 "
+          placeholder:text-dark-grayish-blue py-3 pl-[52px] md:pl-[72px] pr-5 rounded w-full md:py-5
+            dark:text-very-light-gray "
 				/>
 				<input type="submit" hidden disabled={todoText.length < 10} />
 			</form>
@@ -123,10 +124,12 @@
 			</section>
 		</main>
 
+		<!-- TODO import tailwind breakpoints and use md screen width to conditionally render this fieldset -->
 		<fieldset
+			aria-labelledby="filtersLabel"
 			class="rounded bg-white shadow flex justify-center px-[10px] mb-10 dark:shadow-none dark:bg-dark-gray md:hidden"
 		>
-			<legend class="sr-only">Filter by status</legend>
+			<legend id="filtersLabel" class="sr-only">Filter by status</legend>
 			{#each filterOptions as value}
 				<label
 					for={value}
