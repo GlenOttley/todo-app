@@ -105,7 +105,7 @@
 							>
 								<input
 									type="radio"
-									name="statusDesktop"
+									name="status"
 									id={value}
 									{value}
 									on:change={() => setFilter(value)}
@@ -147,8 +147,8 @@
 				</label>
 			{/each}
 		</fieldset>
-		<div class="text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue">
+		<section class="text-base text-center text-dark-grayish-blue dark:text-very-dark-grayish-blue">
 			Drag and drop to reorder list
-		</div>
+		</section>
 	</div>
 </div>
