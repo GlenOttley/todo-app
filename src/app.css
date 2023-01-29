@@ -5,11 +5,11 @@
 @tailwind utilities;
 
 @layer base {
-	body {
-		@apply bg-very-light-gray;
+	body * {
+		@apply transition-colors duration-200;
 	}
 	.text-sm {
-		@apply tracking-[0.17px];
+		@apply tracking-[0.17px] md:!text-lg;
 	}
 	.text-base {
 		@apply tracking-[0.19px];
