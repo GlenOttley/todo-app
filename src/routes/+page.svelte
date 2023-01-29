@@ -58,15 +58,17 @@
 	}
 </script>
 
-<div class=" bg-very-light-gray-bg dark:bg-very-dark-gray">
+<div class="bg-very-light-gray-bg dark:bg-very-dark-gray">
 	<div class="container relative bottom-[92px] md:bottom-[135px]">
 		<main aria-labelledby="todos-label" class="mb-4">
 			<form on:submit|preventDefault={addTodo} class="flex items-center mb-4">
 				<span
 					class="absolute w-5 h-5 ml-5 bg-white border rounded-full md:ml-6 md:h-6 md:w-6 border-very-light-grayish-blue dark:bg-dark-gray dark:border-gray"
 				/>
+				<span id="newTodoLabel" class="sr-only">Create a new to-do...</span>
 				<input
 					type="text"
+					aria-labelledby="newTodoLabel"
 					aria-invalid={todoText.length < 10}
 					aria-label="Create a new to-do..."
 					placeholder="Create a new to-do..."
@@ -77,7 +79,9 @@
 				<input type="submit" hidden disabled={todoText.length < 10} />
 			</form>
 			<section class="bg-white rounded shadow dark:shadow-none dark:bg-dark-gray md:mb-12">
-				<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="sr-only">My To-do List</h1>
+				<h1 bind:this={todosLabel} id="todos-label" tabindex="-1" class="outline-none sr-only">
+					My To-do List
+				</h1>
 				<div bind:this={liveRegion} role="status" aria-live="polite" class="sr-only">
 					<!-- add content to hear it spoken -->
 				</div>
@@ -117,9 +121,6 @@
 						on:click={clearCompleted}>Clear Completed</button
 					>
 				</div>
-				<div class="empty-state">
-					<p>Add your first to-do</p>
-				</div>
 			</section>
 		</main>
 
@@ -152,18 +153,3 @@
 		</p>
 	</div>
 </div>
-
-<style>
-	.empty-state,
-	ul:empty {
-		display: none;
-	}
-
-	ul:empty + .empty-state {
-		display: block;
-	}
-
-	[tabindex='-1'] {
-		outline: none;
-	}
-</style>
