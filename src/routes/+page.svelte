@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Header from '$components/Header.svelte';
 	import { todos, filter, filteredTodos } from '$lib/stores';
 	import type { Todo } from '$lib/types';
 	import SortableList from 'svelte-sortable-list';
