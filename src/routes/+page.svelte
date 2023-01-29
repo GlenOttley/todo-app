@@ -57,7 +57,7 @@
 	}
 </script>
 
-<main class="h-screen bg-very-light-gray-bg dark:bg-very-dark-gray">
+<main class="bg-very-light-gray-bg dark:bg-very-dark-gray">
 	<div class="container relative bottom-[92px] md:bottom-[135px]">
 		<div aria-labelledby="todos-label" class="mb-4">
 			<form
